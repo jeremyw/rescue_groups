@@ -13,3 +13,4 @@ end
 require_relative '../models/animal'
 require_relative '../models/organization'
 require_relative '../models/event'
+require_relative '../models/breed'
