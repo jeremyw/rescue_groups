@@ -29,7 +29,7 @@ module RescueGroups
     # return: none
     def initialize(name, operation, criteria)
       @name      = name
-      @operation = OPERATIONS[operation] or fail InvalidFilter, 'Invalid operation given'
+      @operation = OPERATIONS[operation.to_sym] or fail InvalidFilter, 'Invalid operation given'
       @criteria  = criteria
     end
 
