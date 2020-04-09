@@ -28,6 +28,8 @@ module RescueGroups
           fail(NotFound, "Unable to find #{ self.name } with id: #{ ids }")
         end
 
+        return response['data'] if RescueGroups.config.raw_data
+
         objects = response['data'].map { |data| new(data) }
 
         [*ids].flatten.length == 1 ? objects.first : objects
@@ -50,6 +52,8 @@ module RescueGroups
         fail(InvalidRequest, "Problem with request #{ response.error }") unless response.success?
 
         response_with_additional = additional_request_data(where_request)
+
+        return response_with_additional['data'] if RescueGroups.config.raw_data
 
         response_with_additional['data'].map do |_data_id, data|
           new(data)
